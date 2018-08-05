@@ -61,38 +61,30 @@
                         Compse mail
                     </h2>
                 </div>
-                <div class="mail-box">
-
-
-                    <div class="mail-body">
-
-                        <form class="form-horizontal" method="get">
+                <form class="form-horizontal" method="get" action="{{ url('email/send') }}">
+                    <div class="mail-box">
+                        <div class="mail-body">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">To:</label>
-                                <div class="col-sm-10"><input type="text" class="form-control" value="alex.smith@corporat.com"></div>
+                                <div class="col-sm-10"><input name="send_to" type="text" class="form-control"></div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Subject:</label>
-                                <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
+                                <div class="col-sm-10"><input name="subject" type="text" class="form-control"></div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Content:</label>
-                                <div class="col-sm-10"><input type="text" class="form-control" value=""></div>
+                                <div class="col-sm-10"><input name="content" type="text" class="form-control"></div>
                             </div>
-                        </form>
-
+                        </div>
+                        <div class="mail-body text-right">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Send</button>
+                            <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
+                            <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-
-                    <div class="mail-body text-right">
-                        <a href="mailbox.html" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Send"><i class="fa fa-reply"></i> Send</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Discard email"><i class="fa fa-times"></i> Discard</a>
-                        <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to draft folder"><i class="fa fa-pencil"></i> Draft</a>
-                    </div>
-                    <div class="clearfix"></div>
-
-
-
-                </div>
+                </form>
             </div>
         </div>
     </div>

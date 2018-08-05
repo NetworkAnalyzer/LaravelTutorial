@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SampleEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
@@ -18,23 +20,24 @@ class EmailController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('email.create');
+        return view('emails.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Send a newly created email.
      */
-    public function store(Request $request)
+    public function send(Request $request)
     {
-        //
+        $subject = $request->input('subject');
+        $content = $request->input('content');
+        $sendTo = $request->input('send_to');
+
+        Mail::to($sendTo)->send(new SampleEmail($subject, $content));
+
+        return back()->with('success', 'メールを送信しました．');
     }
 
     /**

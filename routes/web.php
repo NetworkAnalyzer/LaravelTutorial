@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('email', 'EmailController');
+Route::get('email/create', 'EmailController@create');
+Route::get('email/send', 'EmailController@send');
