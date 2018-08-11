@@ -17,7 +17,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::all();
-        
+
         return view('gallery.index', compact('galleries'));
     }
 
@@ -88,8 +88,10 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Gallery $gallery)
     {
-        //
+        $gallery->delete();
+
+        return redirect('gallery');
     }
 }
