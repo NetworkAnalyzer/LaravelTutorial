@@ -47,7 +47,7 @@ class GalleryController extends Controller
         $extension = $match[1];
 
         // save a original version
-        $filePath = public_path() . '/img/gallery/';
+        $filePath = public_path() . Gallery::LOCATION;
         $image->save($filePath . $hash . '.' . $extension);
 
         // save a small version
