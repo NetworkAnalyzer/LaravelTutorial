@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
+use App\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class GalleryController extends Controller
 {
@@ -35,7 +37,23 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userId = Auth::user()->id;
+        $image = Image::make($request->image);
+
+        // $image->mime has a string like "image/extension", so extract string after "/".
+        preg_match('/\/(\w+)/', $image->mime, $match);
+        $extension = $match[1];
+
+        $fileName = md5($image->dirname . $userId) . '.' . $extension;
+        $filePath = public_path() . '/img/gallery/';
+        $image->save($filePath . $fileName);
+
+        $gallery = new Gallery();
+        $gallery->user_id = $userId;
+        $gallery->file_name = $fileName;
+        $gallery->save();
+
+        return back();
     }
 
     /**
