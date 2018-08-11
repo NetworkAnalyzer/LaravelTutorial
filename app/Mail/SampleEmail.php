@@ -38,8 +38,8 @@ class SampleEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.html_mail')
-            ->text('emails.text_mail')
+        return $this->view('email.html_mail')
+            ->text('email.text_mail')
             ->subject($this->subject)
             ->with([
                 'content' => $this->content,
