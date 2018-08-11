@@ -13,7 +13,7 @@
                         {{ Form::open(['method' => 'post', 'url' => route('gallery.store'), 'files' => true, 'class' => 'form-horizontal']) }}
                             <div class="form-control">
                                 <div class="col-lg-10">
-                                    {{ Form::file('image') }}
+                                    {{ Form::file('image[]', ['multiple' => 'multiple']) }}
                                     <div class="preview" />
                                 </div>
                             </div>
@@ -37,6 +37,7 @@
                 var file = e.target.files[0],
                     reader = new FileReader(),
                     $preview = $(".preview");
+
                 t = this;
 
                 // exit processing if a file is not image
@@ -47,7 +48,6 @@
                 // display the loaded image
                 reader.onload = (function(file) {
                     return function(e) {
-                        console.log(e);
                         // remove existing preview
                         $preview.empty();
                         // add <image> in the <div> has preview class

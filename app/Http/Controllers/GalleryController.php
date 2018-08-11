@@ -39,25 +39,28 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $userId = Auth::user()->id;
-        $image = Image::make($request->image);
 
-        $hash = md5($image->dirname . $userId);
-        // $image->mime has a string like "image/extension", so extract string after "/".
-        preg_match('/\/(\w+)/', $image->mime, $match);
-        $extension = $match[1];
+        foreach ($request->image as $item) {
+            $image = Image::make($item);
 
-        // save a original version
-        $filePath = public_path() . Gallery::LOCATION;
-        $image->save($filePath . $hash . '.' . $extension);
+            $hash = md5($image->dirname . $userId);
+            // $image->mime has a string like "image/extension", so extract string after "/".
+            preg_match('/\/(\w+)/', $image->mime, $match);
+            $extension = $match[1];
 
-        // save a small version
-        $image->resize(100, 100)->save($filePath . $hash . '_small.' . $extension);
+            // save a original version
+            $filePath = public_path() . Gallery::LOCATION;
+            $image->save($filePath . $hash . '.' . $extension);
 
-        $gallery = new Gallery();
-        $gallery->user_id = $userId;
-        $gallery->file_name = $hash;
-        $gallery->extension = $extension;
-        $gallery->save();
+            // save a small version
+            $image->resize(100, 100)->save($filePath . $hash . '_small.' . $extension);
+
+            $gallery = new Gallery();
+            $gallery->user_id = $userId;
+            $gallery->file_name = $hash;
+            $gallery->extension = $extension;
+            $gallery->save();
+        }
 
         return redirect('gallery');
     }
