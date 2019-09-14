@@ -50082,7 +50082,8 @@ Vue.component('sample-component', __webpack_require__(/*! ./components/SampleCom
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  template: '<h1>Hello world</h1>'
 });
 
 /***/ }),

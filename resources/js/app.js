@@ -30,4 +30,5 @@ Vue.component('sample-component', require('./components/SampleComponent.vue').de
 
 const app = new Vue({
     el: '#app',
+    template: '<h1>Hello world</h1>'
 });
