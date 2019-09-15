@@ -10,6 +10,7 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 import App from './App.vue'
+import './bootstrap'
 
 /**
  * The following block of code may be used to automatically register your
