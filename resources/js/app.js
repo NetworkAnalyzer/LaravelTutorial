@@ -8,6 +8,7 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import router from './router'
+import store from './store'
 import App from './App.vue'
 
 /**
@@ -33,6 +34,7 @@ Vue.component('sample-component', require('./components/SampleComponent.vue').de
 const app = new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App />'
 });
