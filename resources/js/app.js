@@ -32,10 +32,16 @@ Vue.component('sample-component', require('./components/SampleComponent.vue').de
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    router,
-    store,
-    components: { App },
-    template: '<App />'
-});
+const createApp = async () => {
+    await store.dispatch('auth/currentUser')
+  
+    new Vue({
+      el: '#app',
+      router,
+      store,
+      components: { App },
+      template: '<App />'
+    })
+}
+
+createApp()
